@@ -50,7 +50,6 @@ Partial Class Form1
         LabelStats = New System.Windows.Forms.Label()
         LabelAide = New System.Windows.Forms.Label()
         Timer1 = New System.Windows.Forms.Timer(components)
-        CType(SplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
         CType(SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -355,7 +354,6 @@ Partial Class Form1
         Name = "Form1"
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Text = "VacParticules - chambre UHV"
-        CType(SplitContainer1.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.Panel1.ResumeLayout(False)
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
