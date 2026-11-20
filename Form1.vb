@@ -13,6 +13,9 @@ Public Class Form1
         ChambreView1.Moteur = m_moteur
         m_moteur.Chambre.PressionMbar = PressionDepuisTrackBar()
         m_moteur.Chambre.TemperatureK = TrackBarTemp.Value
+        ChambreView1.Vue3D = ChkVue3D.Checked
+        ChambreView1.AzimutDeg = TrackBarAzimut.Value
+        LabelAzimutVal.Text = TrackBarAzimut.Value & " deg"
         AppliquerOptions()
         MettreAJourInfos()
         MettreAJourVitesseLabel()
@@ -33,8 +36,7 @@ Public Class Form1
     End Function
 
     Private Sub Reinitialiser()
-        Dim r = ChambreView1.RectangleInterieur
-        m_moteur.Reinitialiser(CInt(NumericUpDownNb.Value), r.Width, r.Height)
+        m_moteur.Reinitialiser(CInt(NumericUpDownNb.Value))
         ChambreView1.EffacerTrail()
     End Sub
 
@@ -50,7 +52,7 @@ Public Class Form1
         LabelPressionVal.Text = p.ToString("0.0E+00") & " mbar"
         LabelTempVal.Text = m_moteur.Chambre.TemperatureK.ToString("0") & " K"
         Dim lambda = ConstantesPhysique.LibreParcoursMoyen(p, m_moteur.Chambre.TemperatureK)
-        Dim tailleM = Math.Max(m_moteur.Chambre.LargeurM, m_moteur.Chambre.HauteurM)
+        Dim tailleM = Math.Max(m_moteur.Chambre.LargeurM, Math.Max(m_moteur.Chambre.ProfondeurM, m_moteur.Chambre.HauteurM))
         Dim txtLambda = ConstantesPhysique.FormaterDistance(lambda)
         If lambda > 100.0 * tailleM Then txtLambda &= "  (>> chambre : trajectoires libres)"
         LabelInfo.Text = "Regime : " & ConstantesPhysique.RegimeVide(p) & vbCrLf &
@@ -70,8 +72,7 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        Dim r = ChambreView1.RectangleInterieur
-        m_moteur.Avancer(Timer1.Interval / 1000.0, TimeScaleDepuisTrackBar(), r.Width, r.Height)
+        m_moteur.Avancer(Timer1.Interval / 1000.0, TimeScaleDepuisTrackBar())
         ChambreView1.Invalidate()
         m_compteurFrames += 1
         Dim maintenant = DateTime.Now
@@ -98,6 +99,15 @@ Public Class Form1
         MettreAJourVitesseLabel()
     End Sub
 
+    Private Sub TrackBarAzimut_ValueChanged(sender As Object, e As EventArgs) Handles TrackBarAzimut.ValueChanged
+        ChambreView1.AzimutDeg = TrackBarAzimut.Value
+        LabelAzimutVal.Text = TrackBarAzimut.Value & " deg"
+    End Sub
+
+    Private Sub ChkVue3D_CheckedChanged(sender As Object, e As EventArgs) Handles ChkVue3D.CheckedChanged
+        ChambreView1.Vue3D = ChkVue3D.Checked
+    End Sub
+
     Private Sub NumericUpDownNb_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDownNb.ValueChanged
         If m_initialise Then Reinitialiser()
     End Sub
@@ -116,7 +126,7 @@ Public Class Form1
     End Sub
 
     Private Sub ChambreView1_MouseDown(sender As Object, e As MouseEventArgs) Handles ChambreView1.MouseDown
-        Dim r = ChambreView1.RectangleInterieur
-        m_moteur.InjecterBouffee(e.X - r.X, e.Y - r.Y, 25, r.Width, r.Height)
+        Dim c = ChambreView1.ClicVersChambre(e.X, e.Y)
+        m_moteur.InjecterBouffee(c(0), c(1), c(2), 25)
     End Sub
 End Class

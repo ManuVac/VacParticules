@@ -43,6 +43,11 @@ Partial Class Form1
         ChkTrainees = New System.Windows.Forms.CheckBox()
         ChkCouleur = New System.Windows.Forms.CheckBox()
         GroupBoxSimu = New System.Windows.Forms.GroupBox()
+        GroupBoxVue = New System.Windows.Forms.GroupBox()
+        ChkVue3D = New System.Windows.Forms.CheckBox()
+        LabelAzimutLbl = New System.Windows.Forms.Label()
+        TrackBarAzimut = New System.Windows.Forms.TrackBar()
+        LabelAzimutVal = New System.Windows.Forms.Label()
         LabelVitesseLbl = New System.Windows.Forms.Label()
         TrackBarVitesse = New System.Windows.Forms.TrackBar()
         LabelVitesseVal = New System.Windows.Forms.Label()
@@ -59,6 +64,8 @@ Partial Class Form1
         CType(TrackBarPression, System.ComponentModel.ISupportInitialize).BeginInit()
         GroupBoxParticules.SuspendLayout()
         CType(NumericUpDownNb, System.ComponentModel.ISupportInitialize).BeginInit()
+        GroupBoxVue.SuspendLayout()
+        CType(TrackBarAzimut, System.ComponentModel.ISupportInitialize).BeginInit()
         GroupBoxSimu.SuspendLayout()
         CType(TrackBarVitesse, System.ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -95,6 +102,7 @@ Partial Class Form1
         FlowLayoutPanel1.AutoScroll = True
         FlowLayoutPanel1.Controls.Add(GroupBoxCond)
         FlowLayoutPanel1.Controls.Add(GroupBoxParticules)
+        FlowLayoutPanel1.Controls.Add(GroupBoxVue)
         FlowLayoutPanel1.Controls.Add(GroupBoxSimu)
         FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
@@ -271,6 +279,58 @@ Partial Class Form1
         ChkCouleur.Text = "Couleur selon la vitesse"
         ChkCouleur.UseVisualStyleBackColor = True
         '
+        'GroupBoxVue
+        '
+        GroupBoxVue.Controls.Add(ChkVue3D)
+        GroupBoxVue.Controls.Add(LabelAzimutLbl)
+        GroupBoxVue.Controls.Add(TrackBarAzimut)
+        GroupBoxVue.Controls.Add(LabelAzimutVal)
+        GroupBoxVue.Location = New System.Drawing.Point(11, 423)
+        GroupBoxVue.Name = "GroupBoxVue"
+        GroupBoxVue.Size = New System.Drawing.Size(286, 138)
+        GroupBoxVue.TabIndex = 2
+        GroupBoxVue.TabStop = False
+        GroupBoxVue.Text = "Vue"
+        '
+        'ChkVue3D
+        '
+        ChkVue3D.AutoSize = True
+        ChkVue3D.Checked = True
+        ChkVue3D.CheckState = System.Windows.Forms.CheckState.Checked
+        ChkVue3D.Location = New System.Drawing.Point(10, 22)
+        ChkVue3D.Name = "ChkVue3D"
+        ChkVue3D.Size = New System.Drawing.Size(140, 19)
+        ChkVue3D.TabIndex = 0
+        ChkVue3D.Text = "Vue 3D isometrique"
+        ChkVue3D.UseVisualStyleBackColor = True
+        '
+        'LabelAzimutLbl
+        '
+        LabelAzimutLbl.AutoSize = True
+        LabelAzimutLbl.Location = New System.Drawing.Point(10, 48)
+        LabelAzimutLbl.Name = "LabelAzimutLbl"
+        LabelAzimutLbl.Size = New System.Drawing.Size(101, 15)
+        LabelAzimutLbl.TabIndex = 1
+        LabelAzimutLbl.Text = "Rotation (azimut) :"
+        '
+        'TrackBarAzimut
+        '
+        TrackBarAzimut.Location = New System.Drawing.Point(10, 66)
+        TrackBarAzimut.Maximum = 360
+        TrackBarAzimut.Name = "TrackBarAzimut"
+        TrackBarAzimut.Size = New System.Drawing.Size(264, 45)
+        TrackBarAzimut.TabIndex = 2
+        TrackBarAzimut.TickFrequency = 30
+        TrackBarAzimut.Value = 45
+        '
+        'LabelAzimutVal
+        '
+        LabelAzimutVal.Location = New System.Drawing.Point(10, 114)
+        LabelAzimutVal.Name = "LabelAzimutVal"
+        LabelAzimutVal.Size = New System.Drawing.Size(100, 20)
+        LabelAzimutVal.TabIndex = 3
+        LabelAzimutVal.Text = "45 deg"
+        '
         'GroupBoxSimu
         '
         GroupBoxSimu.Controls.Add(LabelVitesseLbl)
@@ -365,6 +425,9 @@ Partial Class Form1
         GroupBoxParticules.ResumeLayout(False)
         GroupBoxParticules.PerformLayout()
         CType(NumericUpDownNb, System.ComponentModel.ISupportInitialize).EndInit()
+        GroupBoxVue.ResumeLayout(False)
+        GroupBoxVue.PerformLayout()
+        CType(TrackBarAzimut, System.ComponentModel.ISupportInitialize).EndInit()
         GroupBoxSimu.ResumeLayout(False)
         GroupBoxSimu.PerformLayout()
         CType(TrackBarVitesse, System.ComponentModel.ISupportInitialize).EndInit()
@@ -392,6 +455,11 @@ Partial Class Form1
     Friend WithEvents ChkTrainees As System.Windows.Forms.CheckBox
     Friend WithEvents ChkCouleur As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBoxSimu As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBoxVue As System.Windows.Forms.GroupBox
+    Friend WithEvents ChkVue3D As System.Windows.Forms.CheckBox
+    Friend WithEvents LabelAzimutLbl As System.Windows.Forms.Label
+    Friend WithEvents TrackBarAzimut As System.Windows.Forms.TrackBar
+    Friend WithEvents LabelAzimutVal As System.Windows.Forms.Label
     Friend WithEvents LabelVitesseLbl As System.Windows.Forms.Label
     Friend WithEvents TrackBarVitesse As System.Windows.Forms.TrackBar
     Friend WithEvents LabelVitesseVal As System.Windows.Forms.Label

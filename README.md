@@ -14,8 +14,13 @@ Ouvrir `VacParticules.slnx` avec Visual Studio 2026, puis F5.
 - **Nombre de particules** puis **Reinitialiser** pour repeupler la chambre.
 - **Clic dans la chambre** : injecte une bouffee de 25 particules a l'endroit du clic (simule une fuite).
 - **Vitesse de simulation** : echelle de temps x0,01 a x10.
+- **Vue** : case "Vue 3D isometrique" (cochee par defaut) pour la chambre en perspective 3D
+  (elevation 30 deg, parois transparentes, particules triees en profondeur, aretes cachees en fonce) ;
+  slider d'azimut 0-360 deg pour tourner autour de la chambre. Decocher pour la vue 2D de dessus.
 - Options : collisions entre particules, reflexion diffuse (loi du cosinus) sur les parois,
   trainees, couleur selon la vitesse (bleu = lent, rouge = rapide).
+
+La chambre est une boite de 0,30 x 0,20 x 0,15 m (modifiable dans `Simulation/Chambre.vb`).
 
 ## Physique
 
@@ -31,8 +36,8 @@ Ouvrir `VacParticules.slnx` avec Visual Studio 2026, puis F5.
 ## Structure
 
 - `Simulation/ConstantesPhysique.vb` : constantes SI, lambda, regimes de vide.
-- `Simulation/Chambre.vb` : dimensions, pression, temperature.
-- `Simulation/Particule.vb` : position, vitesse, rayon.
-- `Simulation/MoteurPhysique.vb` : integration temporelle (sous-pas), collisions.
-- `Rendu/ChambreView.vb` : UserControl double buffer, trainees, rendu des particules.
+- `Simulation/Chambre.vb` : dimensions 3D (m), pression, temperature.
+- `Simulation/Particule.vb` : position (x,y,z en m), vitesse (m/s), rayon.
+- `Simulation/MoteurPhysique.vb` : integration temporelle (sous-pas), collisions 3D.
+- `Rendu/ChambreView.vb` : UserControl double buffer, trainees, projection 2D ou 3D isometrique.
 - `Form1.vb` / `Form1.Designer.vb` : interface et boucle de simulation (Timer 15 ms).
